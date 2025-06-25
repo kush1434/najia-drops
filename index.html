@@ -1,111 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Naija Drops - Water for Nigeria</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f5f9ff;
-      color: #1a1a1a;
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#BF0D3E',
+            secondary: '#0B2B40',
+            cream: '#FFF7EA',
+            dark: '#1a1a1a'
+          },
+          fontFamily: {
+            heading: ['"Playfair Display"', 'serif'],
+            body: ['Rubik', 'sans-serif']
+          }
+        }
+      }
     }
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px;
-      background-color: #0077b6;
-      color: white;
-    }
-    header h1 {
-      margin: 0;
-    }
-    nav a {
-      color: white;
-      margin: 0 10px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .hero {
-      position: relative;
-      height: 500px;
-      overflow: hidden;
-    }
-    .hero img {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
-    }
-    .hero img.active {
-      opacity: 1;
-    }
-    .overlay {
-      position: absolute;
-      top: 20%;
-      left: 10%;
-      background-color: rgba(255, 255, 255, 0.9);
-      padding: 30px;
-      max-width: 400px;
-      box-shadow: 0 5px 10px rgba(0,0,0,0.2);
-    }
-    .overlay h2 {
-      margin-top: 0;
-      color: #023e8a;
-    }
-    .overlay p {
-      font-size: 16px;
-    }
-    .overlay button {
-      margin-top: 15px;
-      padding: 10px 20px;
-      background-color: #023e8a;
-      color: white;
-      border: none;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    .overlay button:hover {
-      background-color: #0353a4;
-    }
-  </style>
+  </script>
 </head>
-<body>
-  <header>
-    <h1>Naija Drops</h1>
-    <nav>
-      <a href="#">Who We Are</a>
-      <a href="#">What We Do</a>
-      <a href="#">Where We Work</a>
-      <a href="#">How to Help</a>
-      <a href="#" style="background: white; color: #0077b6; padding: 8px 16px; border-radius: 5px;">Donate</a>
+<body class="bg-cream text-dark font-body">
+  <!-- Header -->
+  <header class="bg-secondary text-white px-6 py-4 flex justify-between items-center shadow fixed top-0 w-full z-50">
+    <h1 class="font-heading text-3xl">Naija Drops</h1>
+    <nav class="flex gap-6 text-lg font-heading">
+      <a href="#" class="hover:text-primary transition">Who We Are</a>
+      <a href="#" class="hover:text-primary transition">What We Do</a>
+      <a href="#" class="hover:text-primary transition">Where We Work</a>
+      <a href="#" class="hover:text-primary transition">How to Help</a>
+      <a href="#" class="bg-primary text-white px-4 py-1 rounded hover:bg-white hover:text-secondary transition">Donate</a>
     </nav>
   </header>
 
-  <div class="hero">
-    <img src="image1.jpg" class="active" alt="Children at a water pump">
-    <img src="image2.jpg" alt="Village women collecting clean water">
-    <img src="image3.jpg" alt="Completed well in Nigeria">
-    <div class="overlay">
-      <h2>Water is Life</h2>
-      <p>Millions in Nigeria lack access to clean water. Help us build wells and change lives.</p>
-      <button>Donate now ❯</button>
+<!-- Hero Section -->
+<section class="bg-cream pt-24 pb-16 px-6">
+  <div class="max-w-7xl mx-auto grid md:grid-cols-12 gap-10 items-center">
+    <!-- Text Content (5/12) -->
+    <div class="md:col-span-5 text-center md:text-left px-4">
+      <h2 class="font-heading text-4xl text-secondary font-bold mb-4">
+        Water is Life
+      </h2>
+      <p class="text-lg text-secondary mb-6">
+        Help us build sustainable wells in Nigeria and change lives through clean water access.
+      </p>
+      <button class="bg-primary hover:bg-[#a30b32] text-white text-lg font-semibold px-6 py-3 rounded shadow transition">
+        Donate now ❯
+      </button>
+    </div>
+
+    <!-- Image Content (7/12) -->
+    <div class="md:col-span-7 flex justify-center px-4">
+      <img src="images/well.png" alt="Well building in Nigeria" class="w-full max-w-2xl rounded-2xl shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-xl">
     </div>
   </div>
-
-  <script>
-    const images = document.querySelectorAll('.hero img');
-    let current = 0;
-
-    setInterval(() => {
-      images[current].classList.remove('active');
-      current = (current + 1) % images.length;
-      images[current].classList.add('active');
-    }, 4000);
-  </script>
+</section>
 </body>
 </html>
