@@ -1,79 +1,173 @@
 <!DOCTYPE html>
-<button @click="amount=50" :class="amount===50?'active':''">$50</button>
-<button @click="amount=100" :class="amount===100?'active':''">$100</button>
-<button @click="amount=250" :class="amount===250?'active':''">$250</button>
-<button @click="amount=500" :class="amount===500?'active':''">$500</button>
-</div>
-<label class="field-label">Custom amount</label>
-<input type="number" min="1" x-model.number="amount" class="field" placeholder="Enter amount in USD" />
-<label class="checkbox"><input type="checkbox" x-model="monthly" class="accent-primary" /> Make this a monthly donation</label>
-<a href="#" class="btn-primary block text-center" :aria-label="`Donate $${amount} ${monthly?'monthly':'one-time'}`">Donate <span x-text="`$${amount}`"></span> <span x-text="monthly?'monthly':''"></span></a>
-<p class="fine-print">Secure donations processed by your preferred gateway (Stripe/Paystack). We do not store card details.</p>
-</div>
-</div>
-</section>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Naija Drops — Clean Water for Imo State, Nigeria</title>
 
+  <!-- SEO -->
+  <meta name="description" content="Naija Drops is a nonprofit bringing clean, safe water to communities in Imo State, Nigeria by funding and building sustainable wells.">
 
-<!-- Testimonials -->
-<section class="section section-alt">
-<div class="container">
-<h2 class="section-title">Voices from the Community</h2>
-<div class="grid md:grid-cols-3 gap-6">
-<figure class="card-alt"><blockquote>“Since the well came, my children no longer miss school to fetch water.”</blockquote><figcaption class="figcap">— Chidinma, Owerri West</figcaption></figure>
-<figure class="card-alt"><blockquote>“The water is clean and close. We use it for drinking and cooking.”</blockquote><figcaption class="figcap">— Uche, Orlu</figcaption></figure>
-<figure class="card-alt"><blockquote>“Our health clinic reports fewer waterborne illnesses this season.”</blockquote><figcaption class="figcap">— Community Health Worker, Mbano</figcaption></figure>
-</div>
-</div>
-</section>
+  <!-- Open Graph -->
+  <meta property="og:title" content="Naija Drops — Clean Water for Imo State, Nigeria" />
+  <meta property="og:description" content="Help us fund and build sustainable wells across Imo State. Every drop counts." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.naijadrops.org/" />
+  <meta property="og:image" content="images/og-hero.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
 
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;700&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
 
-<!-- Newsletter -->
-<section aria-label="Newsletter signup" class="section">
-<div class="container newsletter">
-<h2 class="section-title text-white">Stay in the loop</h2>
-<p class="newsletter-text">Get updates on projects, photos from the field, and impact reports.</p>
-<form action="#" method="post" class="newsletter-form" onsubmit="event.preventDefault(); alert('Thanks for subscribing!');">
-<input aria-label="Email address" type="email" required class="field" placeholder="you@example.com" />
-<button class="btn-primary">Subscribe</button>
-</form>
-</div>
-</section>
-</main>
+  <!-- Tailwind Config + Tailwind CDN -->
+  <script src="js/tailwind-config.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- Alpine.js -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
-<!-- Footer -->
-<footer id="contact" class="site-footer">
-<div class="container grid md:grid-cols-4 gap-8">
-<div class="md:col-span-2">
-<h3 class="footer-title">Naija Drops</h3>
-<p class="footer-text">Bringing clean water to Imo State, Nigeria—one well at a time.</p>
-</div>
-<div>
-<h4 class="footer-heading">Contact</h4>
-<ul class="footer-list">
-<li>Email: <a href="mailto:hello@naijadrops.org" class="underline">hello@naijadrops.org</a></li>
-<li>WhatsApp: <a class="underline" href="https://wa.me/2348012345678" target="_blank" rel="noopener">+234 80 1234 5678</a></li>
-<li>Owerri, Imo State, Nigeria</li>
-</ul>
-</div>
-<div>
-<h4 class="footer-heading">Follow</h4>
-<ul class="footer-list">
-<li><a class="underline" href="#" rel="noopener">Instagram</a></li>
-<li><a class="underline" href="#" rel="noopener">Twitter / X</a></li>
-<li><a class="underline" href="#" rel="noopener">Facebook</a></li>
-</ul>
-</div>
-</div>
-<div class="copyright">© <span id="year"></span> Naija Drops — All rights reserved.</div>
-</footer>
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-cream text-dark font-body">
+  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-white text-secondary px-3 py-2 rounded">Skip to content</a>
 
+  <!-- Header -->
+  <header x-data="{open:false}" class="site-header">
+    <div class="brand">
+      <img src="images/well.png" alt="Naija Drops logo" class="h-9 w-9 rounded-full" />
+      <a href="#" class="site-title">Naija Drops</a>
+    </div>
+    <button @click="open=!open" class="nav-toggle md:hidden" aria-label="Toggle menu">☰</button>
+    <nav class="main-nav">
+      <a href="#about">Who We Are</a>
+      <a href="#solution">What We Do</a>
+      <a href="#impact">Impact</a>
+      <a href="#get-involved">How to Help</a>
+      <a href="#contact">Contact</a>
+      <a href="#donate" class="btn-primary">Donate</a>
+    </nav>
+    <nav x-show="open" x-transition class="mobile-nav md:hidden" @click.outside="open=false">
+      <a href="#about">Who We Are</a>
+      <a href="#solution">What We Do</a>
+      <a href="#impact">Impact</a>
+      <a href="#get-involved">How to Help</a>
+      <a href="#contact">Contact</a>
+      <a href="#donate" class="btn-primary">Donate</a>
+    </nav>
+  </header>
 
-<!-- Back to top -->
-<button aria-label="Back to top" class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <!-- Hero -->
+  <section id="home" class="hero">
+    <div class="container grid md:grid-cols-12 gap-8 items-center">
+      <div class="md:col-span-5 text-center md:text-left">
+        <h1 class="hero-title">Water is Life. Together, we can bring it to Imo State.</h1>
+        <p class="hero-subtitle">Help us fund and build sustainable wells across Imo State, Nigeria. Every donation turns into clean water—and a healthier future.</p>
+        <div class="hero-ctas">
+          <a href="#donate" class="btn-primary">Donate now ❯</a>
+          <a href="#impact" class="btn-link">See our impact</a>
+        </div>
+      </div>
+      <div class="md:col-span-7 flex justify-center">
+        <img src="images/well.png" alt="Community well" class="hero-image">
+      </div>
+    </div>
+  </section>
 
+  <!-- About -->
+  <main id="main">
+    <section id="about" class="section">
+      <div class="container">
+        <h2 class="section-title">Who We Are</h2>
+        <p class="section-text">Naija Drops is a nonprofit focused on delivering clean, safe water to families in Imo State, Nigeria. We partner with local leaders, engineers, and volunteers to build wells and train communities on upkeep.</p>
+      </div>
+    </section>
 
-<!-- Site JS -->
-<script src="/js/main.js"></script>
+    <!-- What We Do -->
+    <section id="solution" class="section section-alt">
+      <div class="container">
+        <h2 class="section-title">What We Do</h2>
+        <p class="section-text">We raise funds, build wells, and ensure sustainability through community training.</p>
+      </div>
+    </section>
+
+    <!-- Donate -->
+    <section id="donate" class="section">
+      <div class="container donate" x-data="{amount:100, monthly:false}">
+        <div class="donate-form">
+          <div class="amount-pills">
+            <button @click="amount=50" :class="amount===50?'active':''">$50</button>
+            <button @click="amount=100" :class="amount===100?'active':''">$100</button>
+            <button @click="amount=250" :class="amount===250?'active':''">$250</button>
+            <button @click="amount=500" :class="amount===500?'active':''">$500</button>
+          </div>
+          <label class="field-label">Custom amount</label>
+          <input type="number" min="1" x-model.number="amount" class="field" placeholder="Enter amount in USD" />
+          <label class="checkbox"><input type="checkbox" x-model="monthly"> Make this a monthly donation</label>
+          <a href="#" class="btn-primary block text-center">Donate <span x-text="`$${amount}`"></span> <span x-text="monthly?'monthly':''"></span></a>
+          <p class="fine-print">Secure donations processed by Stripe/Paystack. We do not store card details.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section section-alt">
+      <div class="container">
+        <h2 class="section-title">Voices from the Community</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          <figure class="card-alt"><blockquote>“Since the well came, my children no longer miss school to fetch water.”</blockquote><figcaption class="figcap">— Chidinma, Owerri West</figcaption></figure>
+          <figure class="card-alt"><blockquote>“The water is clean and close. We use it for drinking and cooking.”</blockquote><figcaption class="figcap">— Uche, Orlu</figcaption></figure>
+          <figure class="card-alt"><blockquote>“Our health clinic reports fewer waterborne illnesses this season.”</blockquote><figcaption class="figcap">— Community Health Worker, Mbano</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section aria-label="Newsletter signup" class="section">
+      <div class="container newsletter">
+        <h2 class="section-title text-white">Stay in the loop</h2>
+        <p class="newsletter-text">Get updates on projects, photos from the field, and impact reports.</p>
+        <form action="#" class="newsletter-form" onsubmit="event.preventDefault(); alert('Thanks for subscribing!');">
+          <input type="email" required class="field" placeholder="you@example.com" />
+          <button class="btn-primary">Subscribe</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer id="contact" class="site-footer">
+    <div class="container grid md:grid-cols-4 gap-8">
+      <div class="md:col-span-2">
+        <h3 class="footer-title">Naija Drops</h3>
+        <p class="footer-text">Bringing clean water to Imo State, Nigeria—one well at a time.</p>
+      </div>
+      <div>
+        <h4 class="footer-heading">Contact</h4>
+        <ul class="footer-list">
+          <li>Email: <a href="mailto:hello@naijadrops.org">hello@naijadrops.org</a></li>
+          <li>WhatsApp: <a href="https://wa.me/2348012345678" target="_blank">+234 80 1234 5678</a></li>
+          <li>Owerri, Imo State, Nigeria</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-heading">Follow</h4>
+        <ul class="footer-list">
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Twitter / X</a></li>
+          <li><a href="#">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">© <span id="year"></span> Naija Drops — All rights reserved.</div>
+  </footer>
+
+  <!-- Back to top -->
+  <button aria-label="Back to top" class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
 </body>
 </html>
