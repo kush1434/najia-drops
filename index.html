@@ -5,10 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Naija Drops — Clean Water for Imo State, Nigeria</title>
 
-  <!-- SEO -->
+  <!-- Basic SEO -->
   <meta name="description" content="Naija Drops is a nonprofit bringing clean, safe water to communities in Imo State, Nigeria by funding and building sustainable wells.">
+  <link rel="canonical" href="https://www.naijadrops.org/" />
 
-  <!-- Open Graph -->
+  <!-- Open Graph / Social -->
   <meta property="og:title" content="Naija Drops — Clean Water for Imo State, Nigeria" />
   <meta property="og:description" content="Help us fund and build sustainable wells across Imo State. Every drop counts." />
   <meta property="og:type" content="website" />
@@ -16,158 +17,263 @@
   <meta property="og:image" content="images/og-hero.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- Google Fonts -->
+  <!-- Favicons -->
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;700&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
 
-  <!-- Tailwind Config + Tailwind CDN -->
+  <!-- Tailwind (config first, then CDN) -->
   <script src="js/tailwind-config.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- Alpine.js -->
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
-  <!-- Custom CSS -->
+  <!-- Site CSS -->
   <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Include helper -->
+  <script type="module" src="js/includes.js"></script>
 </head>
 <body class="bg-cream text-dark font-body">
   <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-white text-secondary px-3 py-2 rounded">Skip to content</a>
 
-  <!-- Header -->
-  <header x-data="{open:false}" class="site-header">
-    <div class="brand">
-      <img src="images/well.png" alt="Naija Drops logo" class="h-9 w-9 rounded-full" />
-      <a href="#" class="site-title">Naija Drops</a>
-    </div>
-    <button @click="open=!open" class="nav-toggle md:hidden" aria-label="Toggle menu">☰</button>
-    <nav class="main-nav">
-      <a href="#about">Who We Are</a>
-      <a href="#solution">What We Do</a>
-      <a href="#impact">Impact</a>
-      <a href="#get-involved">How to Help</a>
-      <a href="#contact">Contact</a>
-      <a href="#donate" class="btn-primary">Donate</a>
-    </nav>
-    <nav x-show="open" x-transition class="mobile-nav md:hidden" @click.outside="open=false">
-      <a href="#about">Who We Are</a>
-      <a href="#solution">What We Do</a>
-      <a href="#impact">Impact</a>
-      <a href="#get-involved">How to Help</a>
-      <a href="#contact">Contact</a>
-      <a href="#donate" class="btn-primary">Donate</a>
-    </nav>
-  </header>
+  <!-- Header (included) -->
+  <div data-include="partials/header.html"></div>
 
-  <!-- Hero -->
-  <section id="home" class="hero">
-    <div class="container grid md:grid-cols-12 gap-8 items-center">
+  <!-- Hero Section -->
+  <section id="home" class="bg-cream pt-28 md:pt-32 pb-12 md:pb-20 px-4 md:px-6">
+    <div class="max-w-7xl mx-auto grid md:grid-cols-12 gap-8 md:gap-10 items-center">
       <div class="md:col-span-5 text-center md:text-left">
-        <h1 class="hero-title">Water is Life. Together, we can bring it to Imo State.</h1>
-        <p class="hero-subtitle">Help us fund and build sustainable wells across Imo State, Nigeria. Every donation turns into clean water—and a healthier future.</p>
-        <div class="hero-ctas">
-          <a href="#donate" class="btn-primary">Donate now ❯</a>
-          <a href="#impact" class="btn-link">See our impact</a>
+        <h1 class="font-heading text-4xl md:text-5xl text-secondary font-bold mb-4 leading-tight">
+          Water is Life. Together, we can bring it to Imo State.
+        </h1>
+        <p class="text-lg text-secondary/90 mb-6">
+          Help us fund and build sustainable wells across Imo State, Nigeria. Every donation turns into clean water—and a healthier future.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start">
+          <a href="#donate" class="bg-primary hover:bg-[#a30b32] text-white text-lg font-semibold px-6 py-3 rounded shadow transition">Donate now ❯</a>
+          <a href="#impact" class="text-secondary underline underline-offset-4 font-semibold px-6 py-3">See our impact</a>
         </div>
       </div>
       <div class="md:col-span-7 flex justify-center">
-        <img src="images/well.png" alt="Community well" class="hero-image">
+        <img src="images/well.png" alt="Community well being used in Imo State, Nigeria" class="w-full max-w-2xl rounded-2xl shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-xl" loading="eager" fetchpriority="high">
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust / Stats Band -->
+  <section aria-label="Impact statistics" class="bg-white border-y border-black/5">
+    <div class="max-w-7xl mx-auto px-4 md:px-6 py-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+      <div>
+        <div class="text-3xl md:text-4xl font-extrabold text-secondary">12</div>
+        <div class="text-sm uppercase tracking-wide text-secondary/70">Wells Built</div>
+      </div>
+      <div>
+        <div class="text-3xl md:text-4xl font-extrabold text-secondary">3,800+</div>
+        <div class="text-sm uppercase tracking-wide text-secondary/70">People Served</div>
+      </div>
+      <div>
+        <div class="text-3xl md:text-4xl font-extrabold text-secondary">9</div>
+        <div class="text-sm uppercase tracking-wide text-secondary/70">Communities</div>
+      </div>
+      <div>
+        <div class="text-3xl md:text-4xl font-extrabold text-secondary">$4,200</div>
+        <div class="text-sm uppercase tracking-wide text-secondary/70">To Next Well</div>
       </div>
     </div>
   </section>
 
   <!-- About -->
-  <main id="main">
-    <section id="about" class="section">
-      <div class="container">
-        <h2 class="section-title">Who We Are</h2>
-        <p class="section-text">Naija Drops is a nonprofit focused on delivering clean, safe water to families in Imo State, Nigeria. We partner with local leaders, engineers, and volunteers to build wells and train communities on upkeep.</p>
+  <main id="main" tabindex="-1">
+  <section id="about" class="max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-20">
+    <div class="grid md:grid-cols-12 gap-10 items-center">
+      <div class="md:col-span-6">
+        <h2 class="font-heading text-3xl md:text-4xl text-secondary font-bold mb-4">Who We Are</h2>
+        <p class="text-secondary/90 leading-relaxed mb-4">
+          Naija Drops is a community-driven nonprofit focused on delivering clean, safe water to families across Imo State, Nigeria. We partner with local leaders, engineers, and volunteers to identify need, drill wells, and train communities on upkeep.
+        </p>
+        <p class="text-secondary/90 leading-relaxed">
+          Transparency guides everything we do—every project is documented with photos, GPS coordinates, and maintenance plans so donors can see their impact.
+        </p>
       </div>
-    </section>
-
-    <!-- What We Do -->
-    <section id="solution" class="section section-alt">
-      <div class="container">
-        <h2 class="section-title">What We Do</h2>
-        <p class="section-text">We raise funds, build wells, and ensure sustainability through community training.</p>
-      </div>
-    </section>
-
-    <!-- Donate -->
-    <section id="donate" class="section">
-      <div class="container donate" x-data="{amount:100, monthly:false}">
-        <div class="donate-form">
-          <div class="amount-pills">
-            <button @click="amount=50" :class="amount===50?'active':''">$50</button>
-            <button @click="amount=100" :class="amount===100?'active':''">$100</button>
-            <button @click="amount=250" :class="amount===250?'active':''">$250</button>
-            <button @click="amount=500" :class="amount===500?'active':''">$500</button>
-          </div>
-          <label class="field-label">Custom amount</label>
-          <input type="number" min="1" x-model.number="amount" class="field" placeholder="Enter amount in USD" />
-          <label class="checkbox"><input type="checkbox" x-model="monthly"> Make this a monthly donation</label>
-          <a href="#" class="btn-primary block text-center">Donate <span x-text="`$${amount}`"></span> <span x-text="monthly?'monthly':''"></span></a>
-          <p class="fine-print">Secure donations processed by Stripe/Paystack. We do not store card details.</p>
+      <div class="md:col-span-6">
+        <div class="bg-white rounded-2xl shadow-soft p-6 md:p-8">
+          <h3 class="font-heading text-2xl text-secondary mb-3">Our Approach</h3>
+          <ul class="space-y-3 list-disc pl-5 text-secondary/90">
+            <li>Community-first site selection with local councils</li>
+            <li>Durable solutions: boreholes, hand pumps, and solar-powered wells</li>
+            <li>Local training for maintenance & parts sourcing</li>
+            <li>Public dashboards for funds, timelines, and outcomes</li>
+          </ul>
         </div>
-      </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="section section-alt">
-      <div class="container">
-        <h2 class="section-title">Voices from the Community</h2>
-        <div class="grid md:grid-cols-3 gap-6">
-          <figure class="card-alt"><blockquote>“Since the well came, my children no longer miss school to fetch water.”</blockquote><figcaption class="figcap">— Chidinma, Owerri West</figcaption></figure>
-          <figure class="card-alt"><blockquote>“The water is clean and close. We use it for drinking and cooking.”</blockquote><figcaption class="figcap">— Uche, Orlu</figcaption></figure>
-          <figure class="card-alt"><blockquote>“Our health clinic reports fewer waterborne illnesses this season.”</blockquote><figcaption class="figcap">— Community Health Worker, Mbano</figcaption></figure>
-        </div>
-      </div>
-    </section>
-
-    <!-- Newsletter -->
-    <section aria-label="Newsletter signup" class="section">
-      <div class="container newsletter">
-        <h2 class="section-title text-white">Stay in the loop</h2>
-        <p class="newsletter-text">Get updates on projects, photos from the field, and impact reports.</p>
-        <form action="#" class="newsletter-form" onsubmit="event.preventDefault(); alert('Thanks for subscribing!');">
-          <input type="email" required class="field" placeholder="you@example.com" />
-          <button class="btn-primary">Subscribe</button>
-        </form>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer id="contact" class="site-footer">
-    <div class="container grid md:grid-cols-4 gap-8">
-      <div class="md:col-span-2">
-        <h3 class="footer-title">Naija Drops</h3>
-        <p class="footer-text">Bringing clean water to Imo State, Nigeria—one well at a time.</p>
-      </div>
-      <div>
-        <h4 class="footer-heading">Contact</h4>
-        <ul class="footer-list">
-          <li>Email: <a href="mailto:hello@naijadrops.org">hello@naijadrops.org</a></li>
-          <li>WhatsApp: <a href="https://wa.me/2348012345678" target="_blank">+234 80 1234 5678</a></li>
-          <li>Owerri, Imo State, Nigeria</li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="footer-heading">Follow</h4>
-        <ul class="footer-list">
-          <li><a href="#">Instagram</a></li>
-          <li><a href="#">Twitter / X</a></li>
-          <li><a href="#">Facebook</a></li>
-        </ul>
       </div>
     </div>
-    <div class="copyright">© <span id="year"></span> Naija Drops — All rights reserved.</div>
-  </footer>
+  </section>
+
+  <!-- Solution -->
+  <section id="solution" class="bg-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-20">
+      <h2 class="font-heading text-3xl md:text-4xl text-secondary font-bold mb-8">What We Do</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-cream rounded-2xl p-6 shadow-soft">
+          <div class="text-xl font-semibold text-secondary mb-2">1) Raise</div>
+          <p class="text-secondary/90">We mobilize donations from individuals, schools, and partners to fund wells for high-need communities.</p>
+        </div>
+        <div class="bg-cream rounded-2xl p-6 shadow-soft">
+          <div class="text-xl font-semibold text-secondary mb-2">2) Build</div>
+          <p class="text-secondary/90">With local engineers, we drill, install pumps, and construct protective aprons and drainage for safe, reliable access.</p>
+        </div>
+        <div class="bg-cream rounded-2xl p-6 shadow-soft">
+          <div class="text-xl font-semibold text-secondary mb-2">3) Sustain</div>
+          <p class="text-secondary/90">Community water committees manage maintenance, contributions, and hygiene education for long-term impact.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Impact -->
+  <section id="impact" class="max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-20">
+    <div class="grid md:grid-cols-12 gap-10 items-start">
+      <div class="md:col-span-7">
+        <h2 class="font-heading text-3xl md:text-4xl text-secondary font-bold mb-4">Current Campaign</h2>
+        <p class="text-secondary/90 mb-6">We're fundraising for a solar-powered borehole in <strong>Mbaitoli, Imo</strong>. Your gift brings safe water to over 500 people.</p>
+
+        <div x-data="{goal: 10000, raised: 5800}" class="bg-white rounded-2xl p-6 shadow-soft">
+          <div class="flex justify-between text-sm text-secondary/80 mb-2">
+            <span>Raised: <strong x-text="`$${raised.toLocaleString()}`"></strong></span>
+            <span>Goal: <strong x-text="`$${goal.toLocaleString()}`"></strong></span>
+          </div>
+          <div class="w-full bg-secondary/10 rounded-full h-3 overflow-hidden">
+            <div class="bg-primary h-3 rounded-full" :style="`width: ${Math.min(100, Math.round((raised/goal)*100))}%`" aria-hidden="true"></div>
+          </div>
+          <div class="mt-2 text-right text-sm text-secondary/70"><span x-text="`${Math.min(100, Math.round((raised/goal)*100))}%`"></span> funded</div>
+          <div class="mt-4 flex gap-3">
+            <a href="#donate" class="bg-primary text-white px-5 py-2 rounded hover:bg-[#a30b32] transition">Donate</a>
+            <button @click="$clipboard(`I just donated to Naija Drops to build a well in Imo State. Join me: https://www.naijadrops.org/donate`)" class="px-5 py-2 rounded border border-secondary/20 hover:bg-cream">Share</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="md:col-span-5">
+        <div class="bg-white rounded-2xl p-6 shadow-soft">
+          <h3 class="font-heading text-2xl text-secondary mb-3">Impact to Date</h3>
+          <ul class="space-y-3 text-secondary/90">
+            <li>✅ 12 wells completed across Owerri West, Mbano, and Orlu</li>
+            <li>✅ Average walk time to water reduced by 35 minutes/day</li>
+            <li>✅ School attendance improved in served communities</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Get Involved -->
+  <section id="get-involved" class="bg-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-20">
+      <h2 class="font-heading text-3xl md:text-4xl text-secondary font-bold mb-8">How to Help</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="rounded-2xl p-6 shadow-soft bg-cream">
+          <h3 class="text-xl font-semibold text-secondary mb-2">Donate Monthly</h3>
+          <p class="text-secondary/90 mb-4">Join our Drip Club—sustained gifts keep pumps running and parts stocked.</p>
+          <a href="#donate" class="inline-block bg-primary text-white px-5 py-2 rounded">Become a member</a>
+        </div>
+        <div class="rounded-2xl p-6 shadow-soft bg-cream">
+          <h3 class="text-xl font-semibold text-secondary mb-2">Start a Fundraiser</h3>
+          <p class="text-secondary/90 mb-4">Create a birthday or team campaign. We'll give you photos, updates, and shareable assets.</p>
+          <a href="#contact" class="inline-block border border-secondary/20 px-5 py-2 rounded">Get toolkit</a>
+        </div>
+        <div class="rounded-2xl p-6 shadow-soft bg-cream">
+          <h3 class="text-xl font-semibold text-secondary mb-2">Partner With Us</h3>
+          <p class="text-secondary/90 mb-4">Schools, faith groups, and brands can sponsor wells and receive full project reporting.</p>
+          <a href="#contact" class="inline-block border border-secondary/20 px-5 py-2 rounded">Contact partnerships</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Donate -->
+  <section id="donate" class="max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-20">
+    <div class="bg-secondary text-white rounded-3xl p-8 md:p-12 shadow-soft grid md:grid-cols-2 gap-8 items-center">
+      <div>
+        <h2 class="font-heading text-3xl md:text-4xl font-bold mb-4">Give the gift of clean water</h2>
+        <p class="text-white/90 mb-6">Choose an amount below or enter a custom gift. You'll receive project updates and proof of impact.</p>
+        <ul class="text-white/80 space-y-2 text-sm">
+          <li>• $25 — hygiene training for a family</li>
+          <li>• $100 — contributes to drilling costs</li>
+          <li>• $500 — hand pump & fittings</li>
+          <li>• $5,000 — sponsor a community well</li>
+        </ul>
+      </div>
+      <div x-data="{amount:100, monthly:true}">
+        <div class="bg-white text-dark rounded-2xl p-6">
+          <div class="flex flex-wrap gap-2 mb-4">
+            <button @click="amount=25" :class="amount===25?'bg-primary text-white':'bg-cream'" class="px-4 py-2 rounded">$25</button>
+            <button @click="amount=50" :class="amount===50?'bg-primary text-white':'bg-cream'" class="px-4 py-2 rounded">$50</button>
+            <button @click="amount=100" :class="amount===100?'bg-primary text-white':'bg-cream'" class="px-4 py-2 rounded">$100</button>
+            <button @click="amount=250" :class="amount===250?'bg-primary text-white':'bg-cream'" class="px-4 py-2 rounded">$250</button>
+            <button @click="amount=500" :class="amount===500?'bg-primary text-white':'bg-cream'" class="px-4 py-2 rounded">$500</button>
+          </div>
+          <label class="block text-sm mb-1">Custom amount</label>
+          <input type="number" min="1" x-model.number="amount" class="w-full border border-secondary/20 rounded px-3 py-2 mb-3" placeholder="Enter amount in USD" />
+          <label class="inline-flex items-center gap-2 mb-4">
+            <input type="checkbox" x-model="monthly" class="accent-primary">
+            <span>Make this a monthly donation</span>
+          </label>
+          <a href="#" class="block text-center bg-primary text-white font-semibold px-5 py-3 rounded hover:bg-[#a30b32] transition" :aria-label="`Donate $${amount} ${monthly?'monthly':'one-time'}`">Donate <span x-text="`$${amount}`"></span> <span x-text="monthly?'monthly':''"></span></a>
+          <p class="text-xs text-secondary/70 mt-3">Secure donations processed by your preferred gateway (Stripe/Paystack). We do not store card details.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="bg-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-20">
+      <h2 class="font-heading text-3xl md:text-4xl text-secondary font-bold mb-8">Voices from the Community</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <figure class="bg-cream rounded-2xl p-6 shadow-soft">
+          <blockquote class="text-secondary/90">“Since the well came, my children no longer miss school to fetch water.”</blockquote>
+          <figcaption class="mt-3 text-secondary/70 text-sm">— Chidinma, Owerri West</figcaption>
+        </figure>
+        <figure class="bg-cream rounded-2xl p-6 shadow-soft">
+          <blockquote class="text-secondary/90">“The water is clean and close. We use it for drinking and cooking.”</blockquote>
+          <figcaption class="mt-3 text-secondary/70 text-sm">— Uche, Orlu</figcaption>
+        </figure>
+        <figure class="bg-cream rounded-2xl p-6 shadow-soft">
+          <blockquote class="text-secondary/90">“Our health clinic reports fewer waterborne illnesses this season.”</blockquote>
+          <figcaption class="mt-3 text-secondary/70 text-sm">— Community Health Worker, Mbano</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section aria-label="Newsletter signup" class="max-w-4xl mx-auto px-4 md:px-6 py-16 md:py-20">
+    <div class="bg-secondary rounded-3xl p-8 md:p-12 text-white shadow-soft">
+      <h2 class="font-heading text-3xl md:text-4xl font-bold mb-3">Stay in the loop</h2>
+      <p class="text-white/90 mb-6">Get updates on projects, photos from the field, and impact reports.</p>
+      <form action="#" method="post" class="grid sm:grid-cols-[1fr_auto] gap-3" onsubmit="event.preventDefault(); alert('Thanks for subscribing!');">
+        <input aria-label="Email address" type="email" required class="w-full rounded px-4 py-3 text-dark" placeholder="you@example.com">
+        <button class="bg-primary px-6 py-3 rounded font-semibold">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer (included) -->
+  <div data-include="partials/footer.html"></div>
 
   <!-- Back to top -->
-  <button aria-label="Back to top" class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <button aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})" class="fixed bottom-5 right-5 bg-primary text-white p-3 rounded-full shadow-soft hover:translate-y-[-2px] transition">
+    ↑
+  </button>
 
-  <!-- Scripts -->
+  <!-- Site JS -->
   <script src="js/main.js"></script>
 </body>
 </html>
