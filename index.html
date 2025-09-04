@@ -100,7 +100,8 @@
       <a href="#impact" class="hover:text-primary transition">Impact</a>
       <a href="#get-involved" class="hover:text-primary transition">How to Help</a>
       <a href="#contact" class="hover:text-primary transition">Contact</a>
-      <a href="#donate" class="bg-primary text-white px-4 py-1 rounded hover:bg-white hover:text-secondary transition">Donate</a>
+      <!-- NAV Donate directs straight to GoFundMe with a default amount -->
+      <a href="javascript:void(0)" onclick="openDonation(100)" class="bg-primary text-white px-4 py-1 rounded hover:bg-white hover:text-secondary transition">Donate</a>
     </nav>
 
     <!-- Mobile Menu -->
@@ -111,7 +112,7 @@
         <a @click="open=false" href="#impact" class="py-2">Impact</a>
         <a @click="open=false" href="#get-involved" class="py-2">How to Help</a>
         <a @click="open=false" href="#contact" class="py-2">Contact</a>
-        <a @click="open=false" href="#donate" class="py-2 bg-primary text-center rounded">Donate</a>
+        <a @click="open=false; openDonation(100)" href="javascript:void(0)" class="py-2 bg-primary text-center rounded">Donate</a>
       </div>
     </nav>
   </header>
@@ -128,7 +129,8 @@
           Help us fund and build sustainable wells across Imo State, Nigeria. Every donation turns into clean water—and a healthier future.
         </p>
         <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start">
-          <a href="#donate" class="bg-primary hover:bg-[#a30b32] text-white text-lg font-semibold px-6 py-3 rounded shadow transition">Donate now ❯</a>
+          <!-- Hero donate goes straight to GoFundMe with a suggested default -->
+          <a href="javascript:void(0)" onclick="openDonation(100)" class="bg-primary hover:bg-[#a30b32] text-white text-lg font-semibold px-6 py-3 rounded shadow transition">Donate now ❯</a>
           <a href="#impact" class="text-secondary underline underline-offset-4 font-semibold px-6 py-3">See our impact</a>
         </div>
       </div>
@@ -227,8 +229,9 @@
           </div>
           <div class="mt-2 text-right text-sm text-secondary/70"><span x-text="`${Math.min(100, Math.round((raised/goal)*100))}%`"></span> funded</div>
           <div class="mt-4 flex gap-3">
-            <a href="#donate" class="bg-primary text-white px-5 py-2 rounded hover:bg-[#a30b32] transition">Donate</a>
-            <button @click="$clipboard(`I just donated to Naija Drops to build a well in Imo State. Join me: https://www.naijadrops.org/donate`)" class="px-5 py-2 rounded border border-secondary/20 hover:bg-cream">Share</button>
+            <!-- Impact card Donate goes straight to GoFundMe -->
+            <button onclick="openDonation(100)" class="bg-primary text-white px-5 py-2 rounded hover:bg-[#a30b32] transition">Donate</button>
+            <button onclick="copyShare()" class="px-5 py-2 rounded border border-secondary/20 hover:bg-cream">Share</button>
           </div>
         </div>
       </div>
@@ -254,7 +257,7 @@
         <div class="rounded-2xl p-6 shadow-soft bg-cream">
           <h3 class="text-xl font-semibold text-secondary mb-2">Donate Monthly</h3>
           <p class="text-secondary/90 mb-4">Join our Drip Club—sustained gifts keep pumps running and parts stocked.</p>
-          <a href="#donate" class="inline-block bg-primary text-white px-5 py-2 rounded">Become a member</a>
+          <a href="javascript:void(0)" onclick="openDonation(50)" class="inline-block bg-primary text-white px-5 py-2 rounded">Become a member</a>
         </div>
         <div class="rounded-2xl p-6 shadow-soft bg-cream">
           <h3 class="text-xl font-semibold text-secondary mb-2">Start a Fundraiser</h3>
@@ -265,41 +268,6 @@
           <h3 class="text-xl font-semibold text-secondary mb-2">Partner With Us</h3>
           <p class="text-secondary/90 mb-4">Schools, faith groups, and brands can sponsor wells and receive full project reporting.</p>
           <a href="#contact" class="inline-block border border-secondary/20 px-5 py-2 rounded">Contact partnerships</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Donate CTA / Tiers -->
-  <section id="donate" class="max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-20">
-    <div class="bg-secondary text-white rounded-3xl p-8 md:p-12 shadow-soft grid md:grid-cols-2 gap-8 items-center">
-      <div>
-        <h2 class="font-heading text-3xl md:text-4xl font-bold mb-4">Give the gift of clean water</h2>
-        <p class="text-white/90 mb-6">Choose an amount below or enter a custom gift. You'll receive project updates and proof of impact.</p>
-        <ul class="text-white/80 space-y-2 text-sm">
-          <li>• $25 — hygiene training for a family</li>
-          <li>• $100 — contributes to drilling costs</li>
-          <li>• $500 — hand pump & fittings</li>
-          <li>• $5,000 — sponsor a community well</li>
-        </ul>
-      </div>
-      <div x-data="{amount:100, monthly:true}">
-        <div class="bg-white text-dark rounded-2xl p-6">
-          <div class="flex flex-wrap gap-2 mb-4">
-            <button @click="amount=25" :class="amount===25?'bg-primary text-white':'bg-cream'" class="px-4 py-2 rounded">$25</button>
-            <button @click="amount=50" :class="amount===50?'bg-primary text-white':'bg-cream'" class="px-4 py-2 rounded">$50</button>
-            <button @click="amount=100" :class="amount===100?'bg-primary text-white':'bg-cream'" class="px-4 py-2 rounded">$100</button>
-            <button @click="amount=250" :class="amount===250?'bg-primary text-white':'bg-cream'" class="px-4 py-2 rounded">$250</button>
-            <button @click="amount=500" :class="amount===500?'bg-primary text-white':'bg-cream'" class="px-4 py-2 rounded">$500</button>
-          </div>
-          <label class="block text-sm mb-1">Custom amount</label>
-          <input type="number" min="1" x-model.number="amount" class="w-full border border-secondary/20 rounded px-3 py-2 mb-3" placeholder="Enter amount in USD" />
-          <label class="inline-flex items-center gap-2 mb-4">
-            <input type="checkbox" x-model="monthly" class="accent-primary">
-            <span>Make this a monthly donation</span>
-          </label>
-          <a href="#" class="block text-center bg-primary text-white font-semibold px-5 py-3 rounded hover:bg-[#a30b32] transition" :aria-label="`Donate $${amount} ${monthly?'monthly':'one-time'}`">Donate <span x-text="`$${amount}`"></span> <span x-text="monthly?'monthly':''"></span></a>
-          <p class="text-xs text-secondary/70 mt-3">Secure donations processed by your preferred gateway (Stripe/Paystack). We do not store card details.</p>
         </div>
       </div>
     </div>
@@ -372,9 +340,60 @@
     ↑
   </button>
 
+  <!-- Helper script: GoFundMe donation + sharing -->
+  <script>
+    // GoFundMe campaign constants
+    // IMPORTANT: GoFundMe does not reliably support amount prefill via URL.
+    // We'll open the campaign and copy the chosen amount to clipboard with a clear instruction toast.
+    var GFM_CAMPAIGN = "https://www.gofundme.com/f/donate-to-build-wells-for-nigerian-villages?attribution_id=sl:597d55ea-9f13-4978-a8e0-f5d2eb75794c&lang=en_US&utm_campaign=man_sharesheet_dash&utm_content=amp13_c-amp15_t3&utm_medium=customer&utm_source=copy_link";
+
+    function showToast(message) {
+      var el = document.getElementById('toast');
+      if (!el) return alert(message);
+      el.querySelector('[data-toast-text]').textContent = message;
+      el.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+      setTimeout(function(){
+        el.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+      }, 4500);
+    }
+
+    function openDonation(amount) {
+      var amt = Math.max(1, Math.floor(Number(amount) || 0));
+      var msg = 'On the GoFundMe page, please enter $' + amt + ' and complete your donation. The amount has been copied.';
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(String(amt)).catch(function(){});
+      }
+
+      // Open GoFundMe in a new tab
+      window.open(GFM_CAMPAIGN, '_blank', 'noopener');
+      showToast(msg);
+    }
+
+    function copyShare() {
+      var text = 'I just donated to Naija Drops to build a well in Imo State. Join me: ' + GFM_CAMPAIGN;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function(){
+          alert('Link copied! Thanks for sharing.');
+        }).catch(function(){
+          window.prompt('Copy this link to share:', text);
+        });
+      } else {
+        window.prompt('Copy this link to share:', text);
+      }
+    }
+  </script>
+
   <script>
     // Set current year in footer
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
+  <!-- Small toast for instructions -->
+  <div id="toast" class="fixed left-1/2 -translate-x-1/2 bottom-6 z-[100] transition-all duration-300 opacity-0 pointer-events-none translate-y-4">
+    <div class="bg-dark text-white px-4 py-3 rounded-xl shadow-soft max-w-[90vw] md:max-w-xl text-sm">
+      <span data-toast-text>On the GoFundMe page, please enter your amount.</span>
+    </div>
+  </div>
+
 </body>
 </html>
